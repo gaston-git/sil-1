@@ -1,0 +1,81 @@
+﻿@{
+    Page.Title = "SISTEMA DE INFORME DE LABORES (SIL)";
+    Layout = "~/_Layout.cshtml";
+}
+
+<form method="post" style="margin-top: 30px;">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Fecha">Fecha</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="fecha" aria-describedby="fecha" placeholder="Digite la Fecha" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="HoraInicio">Hora Inicio</label>
+        <div class="col-sm-10">
+            <input type="time" class="form-control" id="horainicio" placeholder="Digite la hora de inicio" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="HoraFinal">Hora Final</label>
+        <div class="col-sm-10">
+            <input type="time" class="form-control" id="horafinal" placeholder="Digite la hora final" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="IdSistema">Sistema</label>
+        <div class="col-sm-10">
+            <select id="idsistema" class="selectpicker form-control">
+                <option>SITI</option>
+                <option>SIGAF</option>
+                <option>SIPROFI</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="IdAccion">Acción</label>
+        <div class="col-sm-10">
+            <select id="idaccion" class="selectpicker form-control">
+                <option>REQUERIMIENTO</option>
+                <option>INCIDENTE</option>
+                <option>MEJORA TECNOLÓGICA</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="IdUnidad">Unidad</label>
+        <div class="col-sm-10">
+            <select id="idunidad" class="selectpicker form-control">
+                <option>USEAC</option>
+                <option>TRIBUTARIOS</option>
+                <option>ADUANAS</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Fecha">Detalle</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="5" id="Detalle" placeholder="Digite el detalle" required></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Fecha">Observación</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="5" id="Observacion" placeholder="Digite las observaciones"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="PorcentajeAvance">Porcentaje de Avance</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="porcentajeAvance" aria-describedby="fecha" min="1" max="100" maxlength="4" placeholder="Digite el porcentaje de avance" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Aceptar</button>
+    <a href="/" class="btn btn-link" role="button">Cancelar</a>
+</form>
+
+<script>    
+    $('#fecha').val(moment().format('YYYY-MM-DD'))
+    $('#horainicio').val(moment().format('HH:MM'))
+    $('#horafinal').val(moment().format('HH:MM'))
+</script>
