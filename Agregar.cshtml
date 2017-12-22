@@ -8,7 +8,7 @@
     var lstUnidades = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Unidades] where idEstado = 1");
 
 
-    string fecActual = DateTime.Now.ToString("dd/MM/yyyy");
+    string fecActual = DateTime.Now.ToString("yyyy-MM-dd");
 
 
     if (IsPost)

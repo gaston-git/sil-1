@@ -55,18 +55,9 @@ $(document).ready(function () {
         }
     })
 
-    //function validaFecha() {
-    //    var x = $('#fecha').val();
-    //    $.alert(x);
-    //}
-
-//    var startDt = document.getElementById("startDateId").value;
-//    var endDt = document.getElementById("endDateId").value;
-
-//    if ((new Date(startDt).getTime() > new Date(endDt).getTime())) {
-//        ----------------------------------
-//}
     
+ 
+
 
  });
 
