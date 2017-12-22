@@ -1,12 +1,7 @@
-﻿################################################################################
-# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
-################################################################################
 
-/.vs/sil-1/v15
-*.sln
-*.config
 
 .vs/
 App_Data/
 *.sln
 *.sdf
+.vs/
