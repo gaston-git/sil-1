@@ -1,23 +1,27 @@
 ﻿
 @{
-        Page.Title = "SISTEMA DE INFORME DE LABORES (SIL)";
-        Layout = "~/_Layout.cshtml";
+    Page.Title = "SISTEMA DE INFORME DE LABORES (SIL)";
+    Layout = "~/_Layout.cshtml";
 
-        var bd = Database.Open("conn");
-        var datos = bd.Query( @"SELECT R.id,convert(varchar,R.fecha,103) Fecha,convert(varchar(5),R.horaInicio,108) horaInicio,
-                                    convert(varchar(5),R.horaFinal,108) horaFinal,S.nombre AS Sistema, A.nombre AS Accion, R.detalle,
-                                    R.observacion,R.avance, E.nombre AS Estado 
-                                FROM registros R, sistemas S, Acciones A, Estados E 
-                                WHERE R.idSistema = S.id 
-                                AND R.idAccion = A.id 
-                                AND R.idEstado = E.id");
+
+    var bd = Database.Open("conn");
+    var datos = bd.Query(@"SELECT R.id,convert(varchar,R.fecha,103) Fecha,convert(varchar(5),R.horaInicio,108) horaInicio,
+                            convert(varchar(5),R.horaFinal,108) horaFinal,S.nombre AS Sistema, A.nombre AS Accion, R.detalle,
+                            R.observacion,R.avance, E.nombre AS Estado
+                        FROM registros R, sistemas S, Acciones A, Estados E
+                        WHERE R.idSistema = S.id
+                        AND R.idAccion = A.id
+                        AND R.idEstado = E.id order by R.id desc");
+
+
 
 
 }
-<br /><a class="btn btn-primary" href="~/Agregar.cshtml" role="button">Nuevo</a>
+<br />
+<button type="button" id="btnNuevo" class="btn btn-primary" >Nuevo</button>
 <button type="button" id="btnEditar" class="btn btn-default" disabled>Editar</button>
 <button type="button" id="btnEliminar" class="btn btn-default" disabled>Eliminar</button><br /><br />
-<table id="example" class="table" cellspacing="0" width="100">
+<table id="registros" class="table" cellspacing="0" width="100">
     <thead>
         <tr>
             <th>Id</th>
@@ -30,10 +34,12 @@
             <th>Observacion</th>
             <th>%_Avance</th>
             <th>Estado</th>
+
         </tr>
     </thead>
     <tbody>
-           @foreach (var row in datos){
+        @foreach (var row in datos)
+        {
         <tr>
             <td>@row.id</td>
             <td>@row.fecha</td>
@@ -46,19 +52,7 @@
             <td>@row.avance</td>
             <td>@row.Estado</td>
         </tr>
-           }
-       </tbody>
-    @*<tfoot>
-        <tr>
-            <th>Fecha</th>
-            <th>Hora_Inicio</th>
-            <th>Hora_Final</th>
-            <th>Sistema</th>
-            <th>Accion</th>
-            <th>Detalle</th>
-            <th>Observaciones</th>
-            <th>%_Avance</th>
-            <th>Estado</th>
-        </tr>
-    </tfoot>*@
+        }
+    </tbody>
 </table>
+<script src="~/js/FuncionesGn.js"></script>

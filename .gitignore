@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 
 SIL-1.sln
 .vs/
 App_Data/
+=======
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/sil-1/v15
+*.sln
+*.config
+
+>>>>>>> b47e31120178dc06e98d208dedfc5a1642a2643b
