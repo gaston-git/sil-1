@@ -6,3 +6,6 @@
 *.sln
 *.config
 
+.vs/
+App_Data/
+*.sln

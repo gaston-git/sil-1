@@ -17,10 +17,22 @@ $(document).ready(function () {
     });
 
     $("#btnEliminar").click(function () {
-        if (idRegistro > 0)
-            window.location.href = '/eliminar.cshtml?id=' + idRegistro;
-        else
-            alert('Debe seleccionar el registro que desea eliminar');
+        $.confirm({
+            title: 'Confirmación',
+            content: '¿Está seguro(a) de borrar el registro?',
+            buttons: {
+                Aceptar: function () {
+                    if (idRegistro > 0)
+                        window.location.href = '/eliminar.cshtml?id=' + idRegistro;
+                    else
+                        $.alert('Debe seleccionar el registro que desea eliminar');
+                },
+                Cancelar: function () {
+                    //$.alert('cancelada la eliminacion');
+                    var x = 0;
+                }
+            }
+        });
 
         return false;
     });
@@ -43,7 +55,17 @@ $(document).ready(function () {
         }
     })
 
+    //function validaFecha() {
+    //    var x = $('#fecha').val();
+    //    $.alert(x);
+    //}
 
+//    var startDt = document.getElementById("startDateId").value;
+//    var endDt = document.getElementById("endDateId").value;
+
+//    if ((new Date(startDt).getTime() > new Date(endDt).getTime())) {
+//        ----------------------------------
+//}
     
 
  });

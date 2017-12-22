@@ -7,8 +7,8 @@
     var lstAcciones = bd.Query("SELECT [id], [nombre] FROM[sil].[dbo].[Acciones] where idEstado = 1");
     var lstUnidades = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Unidades] where idEstado = 1");
 
-   
 
+    string fecActual = DateTime.Now.ToString("dd/MM/yyyy");
 
 
     if (IsPost)
@@ -33,6 +33,7 @@
 }
 
 <form method="post" style="margin-top: 30px;">
+    <input type="text" id="fecactual" value="@fecActual"/>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Fecha">Fecha</label>
         <div class="col-sm-10">
@@ -111,6 +112,4 @@
     $('#horainicio').val(moment().format('HH:MM'))
     $('#horafinal').val(moment().format('HH:MM'))
 
-    
-   
 </script>
