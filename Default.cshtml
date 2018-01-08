@@ -1,55 +1,60 @@
-﻿
-@{
+﻿@{
     Page.Title = "SISTEMA DE INFORME DE LABORES (SIL)";
     Layout = "~/_Layout.cshtml";
 
-
     var bd = Database.Open("conn");
-    var datos = bd.Query(@"SELECT R.id,convert(varchar,R.fecha,103) Fecha,convert(varchar(5),R.horaInicio,108) horaInicio,
+    var datos = bd.Query(@"SELECT R.id,convert(varchar,R.fecha,101) Fecha,convert(varchar(5),R.horaInicio,108) horaInicio,
                             convert(varchar(5),R.horaFinal,108) horaFinal,S.nombre AS Sistema, A.nombre AS Accion, R.detalle,
                             R.observacion,R.avance, E.nombre AS Estado
                         FROM registros R, sistemas S, Acciones A, Estados E
                         WHERE R.idSistema = S.id
                         AND R.idAccion = A.id
+<<<<<<< HEAD
                         AND R.idEstado = E.id order by R.id desc");
 
+=======
+                        AND R.idEstado = E.id order by R.fecha, R.horaInicio");
+>>>>>>> 5b8d2a6243e255dee9566b5f3b92bd0314bae266
 }
 <br />
-<button type="button" id="btnNuevo" class="btn btn-primary" >Nuevo</button>
-<button type="button" id="btnEditar" class="btn btn-default" disabled>Editar</button>
-<button type="button" id="btnEliminar" class="btn btn-default" disabled>Eliminar</button><br /><br />
-<table id="registros" class="table" cellspacing="0" width="100">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Fecha</th>
-            <th>Hora_Inicio</th>
-            <th>Hora_Final</th>
-            <th>Sistema</th>
-            <th>Accion</th>
-            <th>Detalle</th>
-            <th>Observacion</th>
-            <th>%_Avance</th>
-            <th>Estado</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var row in datos)
-        {
-        <tr>
-            <td>@row.id</td>
-            <td>@row.fecha</td>
-            <td>@row.horaInicio</td>
-            <td>@row.horaFinal</td>
-            <td>@row.Sistema</td>
-            <td>@row.Accion</td>
-            <td>@row.detalle</td>
-            <td>@row.observacion</td>
-            <td>@row.avance</td>
-            <td>@row.Estado</td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="contenedor">
+    <button type="button" id="btnNuevo" class="btn btn-primary">Nuevo</button>
+    <button type="button" id="btnEditar" class="btn btn-default" disabled>Editar</button>
+    <button type="button" id="btnEliminar" class="btn btn-default" disabled>Eliminar</button><br /><br />
+    <div class="table-responsive">
+        <table id="registros" class="table" cellspacing="0" width="100">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Hora_Inicio</th>
+                    <th>Hora_Final</th>
+                    <th>Sistema</th>
+                    <th>Accion</th>
+                    <th>Detalle</th>
+                    <th>Observacion</th>
+                    <th>%_Avance</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in datos)
+                {
+                    <tr>
+                        <td>@row.id</td>
+                        <td>@row.fecha</td>
+                        <td>@row.horaInicio</td>
+                        <td>@row.horaFinal</td>
+                        <td>@row.Sistema</td>
+                        <td>@row.Accion</td>
+                        <td>@row.detalle</td>
+                        <td>@row.observacion</td>
+                        <td>@row.avance %</td>
+                        <td>@row.Estado</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 <script src="~/js/FuncionesGn.js"></script>
