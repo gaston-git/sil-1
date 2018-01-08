@@ -33,7 +33,7 @@
 }
 
 <form method="post" style="margin-top: 30px;">
-    <input type="text" id="fecactual" value="@fecActual"/>
+    @*<input type="text" id="fecactual" value="@fecActual"/>*@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Fecha">Fecha</label>
         <div class="col-sm-10">
@@ -88,13 +88,13 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Detalle">Detalle</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="5" id="Detalle" name="Detalle" placeholder="Digite el detalle" required></textarea>
+            <textarea maxlength="100" class="form-control" rows="5" id="Detalle" name="Detalle" placeholder="Digite el detalle" required></textarea>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="Observacion">Observación</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="5" id="Observacion" name="Observacion" placeholder="Digite las observaciones"></textarea>
+            <textarea maxlength="100" class="form-control" rows="5" id="Observacion" name="Observacion" placeholder="Digite las observaciones"></textarea>
         </div>
     </div>
     <div class="form-group row">
@@ -109,7 +109,7 @@
 
 <script>    
     $('#fecha').val(moment().format('YYYY-MM-DD'))
-    $('#horainicio').val(moment().format('HH:MM'))
-    $('#horafinal').val(moment().format('HH:MM'))
+    $('#horainicio').val(moment().format('HH:mm'))
+    $('#horafinal').val(moment().format('HH:mm'))
 
 </script>
