@@ -1,0 +1,43 @@
+﻿@{
+    Page.Title = "Agregar Estado";
+    Layout = "~/_Layout.cshtml";
+    var bd = Database.Open("conn");
+
+
+    if (IsPost)
+    {
+        string nombre = Request.Form["nombre"];
+
+        var query = @"INSERT INTO[dbo].[Estados]
+                            ([nombre]) VALUES(@0)";
+        var row = bd.QuerySingle(query, nombre);
+
+        Response.Redirect("/Mantenimientos/Estados/Estados.cshtml");
+    }
+}
+<div class="container">
+    <form method="post" style="margin-top: 30px;">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <h3>Nuevo Estado</h3>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="Fecha">Nombre</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombre" placeholder="Nombre de Estado" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <a href="/Mantenimientos/Estados/Estados.cshtml" class="btn btn-link" role="button">Cancelar</a>
+            </div>
+        </div>
+
+    </form>
+</div>
