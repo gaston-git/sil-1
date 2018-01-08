@@ -1,15 +1,14 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var idRegistro = 0;
     var idR = 0;
     $("#btnNuevo").click(function () {
-        window.location.href = '/Agregar.cshtml';
+        window.location.href = '/Mantenimientos/Estados/Agregar.cshtml';
         return false;
     });
 
     $("#btnEditar").click(function () {
         if (idRegistro > 0)
-            window.location.href = '/editar.cshtml?id=' + idRegistro;
+            window.location.href = '/Mantenimientos/Estados/Editar.cshtml?id=' + idRegistro;
         else
             alert('Debe seleccionar el registro que desea modificar');
 
@@ -19,11 +18,11 @@ $(document).ready(function () {
     $("#btnEliminar").click(function () {
         $.confirm({
             title: 'Confirmación',
-            content: '¿Está seguro(a) de borrar el registro?',
+            content: '¿Está seguro(a) de borrar el estado?',
             buttons: {
                 Aceptar: function () {
                     if (idRegistro > 0)
-                        window.location.href = '/eliminar.cshtml?id=' + idRegistro;
+                        window.location.href = '/Mantenimientos/Estados/eliminar.cshtml?id=' + idRegistro;
                     else
                         $.alert('Debe seleccionar el registro que desea eliminar');
                 },
@@ -53,10 +52,5 @@ $(document).ready(function () {
             $("#btnNuevo").attr("disabled", "disabled");
         }
     })
-
-    
- 
-
-
- });
+});
 
