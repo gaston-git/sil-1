@@ -1,0 +1,65 @@
+﻿@{
+    Page.Title = "Agregar Unidades";
+    Layout = "~/_Layout.cshtml";
+    var bd = Database.Open("conn");
+
+
+    var lstUnidades = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Unidades]");
+    var lstRoles = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Roles]");
+
+    if (IsPost)
+    {
+        string nombre = Request.Form["nombre"];
+        int idUnidad = Request.Form["idunidad"].AsInt();
+        int idRol = Request.Form["idrol"].AsInt();
+
+        var query = @"INSERT INTO[dbo].[Empleados]
+                            ([nombre],[idUnidad],[idRol]) VALUES(@0,@1,@2)";
+        var row = bd.QuerySingle(query, nombre, idUnidad, idRol);
+
+        Response.Redirect("/Mantenimientos/Empleados/Empleados.cshtml");
+    }
+}
+<div class="container">
+    <form method="post" style="margin-top: 30px;">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <h3>Nuevo Empleado</h3>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="nombre">Nombre</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombre" placeholder="Nombre del Empleado" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="idEmpleado">Unidad</label>
+            <div class="col-sm-5">
+                <select id="idunidad" name="idunidad" class="selectpicker form-control">
+                    @foreach (var row in lstUnidades)
+                     {
+                        <option value="@row.id">@row.nombre</option>
+                    }
+                </select><br />
+                <select id="idrol" name="idrol" class="selectpicker form-control">
+                    @foreach (var row in lstRoles)
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <a href="~/Mantenimientos/Empleados/Empleados.cshtml" class="btn btn-link" role="button">Cancelar</a>
+            </div>
+        </div>
+
+    </form>
+</div>
