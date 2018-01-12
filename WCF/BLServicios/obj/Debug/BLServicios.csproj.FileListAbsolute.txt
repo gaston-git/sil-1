@@ -1,0 +1,11 @@
+C:\Users\alfarouga\source\repos\BLServicios\bin\BLServicios.dll.config
+C:\Users\alfarouga\source\repos\BLServicios\bin\BLServicios.dll
+C:\Users\alfarouga\source\repos\BLServicios\bin\BLServicios.pdb
+C:\Users\alfarouga\source\repos\BLServicios\obj\Debug\BLServicios.csprojResolveAssemblyReference.cache
+C:\Users\alfarouga\source\repos\BLServicios\obj\Debug\BLServicios.csproj.CoreCompileInputs.cache
+C:\Users\alfarouga\source\repos\BLServicios\obj\Debug\BLServicios.dll
+C:\Users\alfarouga\source\repos\BLServicios\obj\Debug\BLServicios.pdb
+C:\Users\alfarouga\source\repos\BLServicios\bin\Newtonsoft.Json.dll
+C:\Users\alfarouga\source\repos\BLServicios\bin\Newtonsoft.Json.xml
+C:\Users\alfarouga\source\repos\BLServicios\bin\ClassLibrary1.dll
+C:\Users\alfarouga\source\repos\BLServicios\bin\ClassLibrary1.pdb
