@@ -1,12 +1,12 @@
-﻿@{
-    var bd = Database.Open("conn");
-    int id = Request.QueryString["id"].AsInt();
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
+    string id = Request.QueryString["id"];
 
-    var query = @"delete [dbo].[Estados] where id = @0";
-    var row = bd.QuerySingle(query, id);
+    wsServicios.Service1 obj = new wsServicios.Service1();
+    var datos = JsonConvert.DeserializeObject<List<dynamic>>(obj.EliminarEstado(id));
 
     Response.Redirect("/Mantenimientos/Estados/Estados.cshtml");
 
 }
 
-}

@@ -1,9 +1,11 @@
-﻿@{
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
     Page.Title = "Estados";
     Layout = "~/_Layout.cshtml";
 
-    var bd = Database.Open("conn");
-    var estados = bd.Query(@"SELECT id, nombre FROM Estados order by nombre");
+    wsServicios.Service1 obj = new wsServicios.Service1();
+    var estados = JsonConvert.DeserializeObject<List<dynamic>>(obj.getEstados("0")); 
 
 }
 <br />
@@ -27,7 +29,7 @@
                 {
                     <tr>
                         <td>@row.id</td>
-                        <td>@row.nombre</td>
+                        <td>@row.Nombre</td>
                     </tr>
                 }
             </tbody>

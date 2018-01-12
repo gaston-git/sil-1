@@ -1,15 +1,12 @@
-﻿@{
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
     Page.Title = "SISTEMA DE INFORME DE LABORES (SIL)";
     Layout = "~/_Layout.cshtml";
 
-    var bd = Database.Open("conn");
-    var datos = bd.Query(@"SELECT R.id,convert(varchar,R.fecha,101) Fecha,convert(varchar(5),R.horaInicio,108) horaInicio,
-                            convert(varchar(5),R.horaFinal,108) horaFinal,S.nombre AS Sistema, A.nombre AS Accion, R.detalle,
-                            R.observacion,R.avance, E.nombre AS Estado
-                        FROM registros R, sistemas S, Acciones A, Estados E
-                        WHERE R.idSistema = S.id
-                        AND R.idAccion = A.id
-                        AND R.idEstado = E.id order by R.fecha, R.horaInicio");
+    wsServicios.Service1 obj = new wsServicios.Service1();
+    var datos = JsonConvert.DeserializeObject<List<dynamic>>(obj.getRegistros("0"));
+   
 }
 <br />
 <div class="contenedor">
@@ -37,7 +34,7 @@
                 {
                     <tr>
                         <td>@row.id</td>
-                        <td>@row.fecha</td>
+                        <td>@row.Fecha</td>
                         <td>@row.horaInicio</td>
                         <td>@row.horaFinal</td>
                         <td>@row.Sistema</td>
