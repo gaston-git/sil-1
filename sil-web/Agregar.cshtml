@@ -1,0 +1,188 @@
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
+    Page.Title = "Agregar Registro";
+    Layout = "~/_Layout.cshtml";
+
+    wsServicios.Service1 obj = new wsServicios.Service1();
+    //var datos = JsonConvert.DeserializeObject<List<dynamic>>(obj.getRegistros("0"));
+
+    var lstSistemas = JsonConvert.DeserializeObject<List<dynamic>>(obj.getSistemas("0"));
+    var lstAcciones = JsonConvert.DeserializeObject<List<dynamic>>(obj.getAcciones("0"));
+    var lstUnidades = JsonConvert.DeserializeObject<List<dynamic>>(obj.getUnidades("0"));
+
+    var bd = Database.Open("conn");
+    /*
+    var lstSistemas = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Sistemas] where idEstado = 1");
+    var lstAcciones = bd.Query("SELECT [id], [nombre] FROM[sil].[dbo].[Acciones] where idEstado = 1");
+    var lstUnidades = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Unidades] where idEstado = 1");
+    */
+
+    string fecActual = DateTime.Now.ToString("yyyy-MM-dd");
+
+
+    if (IsPost)
+    {
+        string fecha = Request.Form["fecha"];
+        string horaIni = Request.Form["horainicio"];
+        string horaFin = Request.Form["horafinal"];
+        string idsistema = Request.Form["idsistema"];
+        string idaccion = Request.Form["idaccion"];
+        string idunidad = Request.Form["idunidad"];
+        string Detalle = Request.Form["Detalle"];
+        string Observacion = Request.Form["Observacion"];
+        string porcentajeAvance = Request.Form["porcentajeAvance"];
+
+        var query = @"INSERT INTO[dbo].[Registros]
+                    ([idEmpleado],[fecha],[horaInicio],[horaFinal],[idSistema],[idAccion],[detalle],[observacion],[avance],[idUnidad],[idEstado])
+                   VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)";
+        var row = bd.QuerySingle(query, 1, fecha, horaIni, horaFin, idsistema, idaccion, Detalle, Observacion, porcentajeAvance, idunidad, 1);
+
+        Response.Redirect("/");
+    }
+}
+<div class="container">
+    <form method="post" style="margin-top: 30px;">
+
+<<<<<<< HEAD
+<form method="post" style="margin-top: 30px;">
+    @*<input type="text" id="fecactual" value="@fecActual"/>*@
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Fecha">Fecha</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="fecha" placeholder="Digite la Fecha" required>
+=======
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <h3>Nuevo Registro</h3>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="Fecha">Fecha</label>
+            <div class="col-sm-3">
+                @*<input type="date" class="form-control" id="fecha" name="fecha" aria-describedby="fecha" placeholder="Digite la Fecha" required>*@
+                <input type="text" class="form-control" id="fecha" name="fecha" aria-describedby="fecha" placeholder="Digite la Fecha" required>
+            </div>
+>>>>>>> 5b8d2a6243e255dee9566b5f3b92bd0314bae266
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="horainicio">Hora Inicio</label>
+            <div class="col-sm-3">
+                <input type="time" class="form-control" id="horainicio" name="horainicio" placeholder="Digite la hora de inicio" required onblur="validahora()">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="horafinal">Hora Final</label>
+            <div class="col-sm-3">
+                <input type="time" class="form-control" id="horafinal" name="horafinal" placeholder="Digite la hora final" required onblur="validahora()">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="idsistema">Sistema</label>
+            <div class="col-sm-10">
+                <select id="idsistema" name="idsistema" class="selectpicker form-control">
+                    @foreach (var row in lstSistemas)
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="idaccion">Acción</label>
+            <div class="col-sm-10">
+                <select id="idaccion" name="idaccion" class="selectpicker form-control">
+                    @foreach (var row in lstAcciones)
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="idunidad">Unidad</label>
+            <div class="col-sm-10">
+                <select id="idunidad" name="idunidad" class="selectpicker form-control">
+                    @foreach (var row in lstUnidades)
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="Detalle">Detalle</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="5" id="Detalle" name="Detalle" placeholder="Digite el detalle" required></textarea>
+            </div>
+        </div>
+<<<<<<< HEAD
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Detalle">Detalle</label>
+        <div class="col-sm-10">
+            <textarea maxlength="100" class="form-control" rows="5" id="Detalle" name="Detalle" placeholder="Digite el detalle" required></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Observacion">Observación</label>
+        <div class="col-sm-10">
+            <textarea maxlength="100" class="form-control" rows="5" id="Observacion" name="Observacion" placeholder="Digite las observaciones"></textarea>
+=======
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="Observacion">Observación</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="5" id="Observacion" name="Observacion" placeholder="Digite las observaciones"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="PorcentajeAvance">% Avance</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="porcentajeAvance" name="porcentajeAvance" aria-describedby="fecha" min="1" max="100" maxlength="3" placeholder="Digite el porcentaje de avance" required>
+            </div>
+>>>>>>> 5b8d2a6243e255dee9566b5f3b92bd0314bae266
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <a href="/" class="btn btn-link" role="button">Cancelar</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+    $('#fecha').val(moment().format('YYYY-MM-DD'))
+    $('#horainicio').val(moment().format('HH:mm'))
+<<<<<<< HEAD
+    $('#horafinal').val(moment().format('HH:mm'))
+=======
+    //$('#horafinal').val(moment().format('HH:mm'))
+
+    $(function () {
+        $("#fecha").datepicker({ maxDate: new Date() });
+        $("#fecha").datepicker("option", "dateFormat", "dd/mm/yy");
+        $('#fecha').datepicker($.datepicker.regional["es"]);
+
+    });
+>>>>>>> 5b8d2a6243e255dee9566b5f3b92bd0314bae266
+
+    function validahora() {
+        if ($('#horainicio').val() !== "" && $('#horafinal').val() !== "") {
+            var startTime = $('#horainicio').val();
+            var endTime = $('#horafinal').val();
+            if (startTime > endTime) {
+                //alert('Hora inicial no puede ser mayor a la final.');
+                $.alert('El campo Hora inicial no puede ser mayor a la Hora final.');
+                $('#horainicio').val("");
+                $('#horafinal').val("");
+                $('#horainicio').focus();
+            }
+        }
+    }
+
+</script>
