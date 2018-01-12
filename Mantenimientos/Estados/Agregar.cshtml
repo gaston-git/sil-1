@@ -1,16 +1,16 @@
-﻿@{
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
     Page.Title = "Agregar Estado";
     Layout = "~/_Layout.cshtml";
-    var bd = Database.Open("conn");
 
 
     if (IsPost)
     {
         string nombre = Request.Form["nombre"];
 
-        var query = @"INSERT INTO[dbo].[Estados]
-                            ([nombre]) VALUES(@0)";
-        var row = bd.QuerySingle(query, nombre);
+        wsServicios.Service1 obj = new wsServicios.Service1();
+        var resultado = JsonConvert.DeserializeObject<List<dynamic>>(obj.CrearEstado(nombre));
 
         Response.Redirect("/Mantenimientos/Estados/Estados.cshtml");
     }

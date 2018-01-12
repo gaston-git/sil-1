@@ -1,12 +1,22 @@
-﻿@{
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
     Page.Title = "Agregar Registro";
     Layout = "~/_Layout.cshtml";
-    var bd = Database.Open("conn");
 
+    wsServicios.Service1 obj = new wsServicios.Service1();
+    //var datos = JsonConvert.DeserializeObject<List<dynamic>>(obj.getRegistros("0"));
+
+    var lstSistemas = JsonConvert.DeserializeObject<List<dynamic>>(obj.getSistemas("0"));
+    var lstAcciones = JsonConvert.DeserializeObject<List<dynamic>>(obj.getAcciones("0"));
+    var lstUnidades = JsonConvert.DeserializeObject<List<dynamic>>(obj.getUnidades("0"));
+
+    var bd = Database.Open("conn");
+    /*
     var lstSistemas = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Sistemas] where idEstado = 1");
     var lstAcciones = bd.Query("SELECT [id], [nombre] FROM[sil].[dbo].[Acciones] where idEstado = 1");
     var lstUnidades = bd.Query("SELECT [id], [nombre] FROM [sil].[dbo].[Unidades] where idEstado = 1");
-
+    */
 
     string fecActual = DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -24,8 +34,8 @@
         string porcentajeAvance = Request.Form["porcentajeAvance"];
 
         var query = @"INSERT INTO[dbo].[Registros]
-                                    ([idEmpleado],[fecha],[horaInicio],[horaFinal],[idSistema],[idAccion],[detalle],[observacion],[avance],[idUnidad],[idEstado])
-                                   VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)";
+                    ([idEmpleado],[fecha],[horaInicio],[horaFinal],[idSistema],[idAccion],[detalle],[observacion],[avance],[idUnidad],[idEstado])
+                   VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)";
         var row = bd.QuerySingle(query, 1, fecha, horaIni, horaFin, idsistema, idaccion, Detalle, Observacion, porcentajeAvance, idunidad, 1);
 
         Response.Redirect("/");
@@ -75,9 +85,9 @@
             <div class="col-sm-10">
                 <select id="idsistema" name="idsistema" class="selectpicker form-control">
                     @foreach (var row in lstSistemas)
-                {
-                    <option value="@row.id">@row.nombre</option>
-            }
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
                 </select>
             </div>
         </div>
@@ -86,9 +96,9 @@
             <div class="col-sm-10">
                 <select id="idaccion" name="idaccion" class="selectpicker form-control">
                     @foreach (var row in lstAcciones)
-                {
-                    <option value="@row.id">@row.nombre</option>
-            }
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
                 </select>
             </div>
         </div>
@@ -97,9 +107,9 @@
             <div class="col-sm-10">
                 <select id="idunidad" name="idunidad" class="selectpicker form-control">
                     @foreach (var row in lstUnidades)
-                {
-                    <option value="@row.id">@row.nombre</option>
-            }
+                    {
+                        <option value="@row.id">@row.nombre</option>
+                    }
                 </select>
             </div>
         </div>
@@ -145,7 +155,7 @@
 
     </form>
 </div>
-<script>    
+<script>
     $('#fecha').val(moment().format('YYYY-MM-DD'))
     $('#horainicio').val(moment().format('HH:mm'))
 <<<<<<< HEAD
@@ -157,7 +167,7 @@
         $("#fecha").datepicker({ maxDate: new Date() });
         $("#fecha").datepicker("option", "dateFormat", "dd/mm/yy");
         $('#fecha').datepicker($.datepicker.regional["es"]);
-        
+
     });
 >>>>>>> 5b8d2a6243e255dee9566b5f3b92bd0314bae266
 
@@ -174,5 +184,5 @@
             }
         }
     }
-    
+
 </script>

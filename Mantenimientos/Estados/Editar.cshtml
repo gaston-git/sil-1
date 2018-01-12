@@ -1,22 +1,26 @@
-﻿@{
+﻿@using System.Collections.Generic;
+@using Newtonsoft.Json;
+@{
     Page.Title = "Editar Estado";
     Layout = "~/_Layout.cshtml";
 
-    var bd = Database.Open("conn");
+    string id = Request.QueryString["id"];
+    string nom = "";
 
-    int id = Request.QueryString["id"].AsInt();
+    wsServicios.Service1 obj = new wsServicios.Service1();
+    var datos = JsonConvert.DeserializeObject<List<dynamic>>(obj.getEstados(id));
 
-    var datos = bd.QuerySingle(@"SELECT [id],[nombre]
-                    FROM [dbo].[Estados] where id = @0", id);
+    //nom = datos.ElementAt
+    foreach(var fila in datos)
+    {
+        nom = fila.Nombre;
+    }
 
     if (IsPost)
     {
-        string nombre = Request.Form["nombre"]; 
+        string nombre = Request.Form["nombre"];
 
-        var query = @"update [dbo].[Estados] set [nombre] = @0
-           where id = @1";
-
-        var row = bd.QuerySingle(query, nombre, id);
+        var resultado = JsonConvert.DeserializeObject<List<dynamic>>(obj.EditarEstado(nombre,id));
 
         Response.Redirect("/Mantenimientos/Estados/Estados.cshtml");
     }
@@ -34,7 +38,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="Fecha">Estado</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombre" value="@datos.nombre" placeholder="Nombre estado" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="nombre" value="@nom" placeholder="Nombre estado" required>
             </div>
         </div>
 
