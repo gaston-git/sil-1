@@ -1,8 +1,0 @@
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\obj\Debug\netstandard2.0\LCAccesoDatos.csprojResolveAssemblyReference.cache
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\obj\Debug\netstandard2.0\LCAccesoDatos.csproj.CoreCompileInputs.cache
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\obj\Debug\netstandard2.0\LCAccesoDatos.AssemblyInfoInputs.cache
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\obj\Debug\netstandard2.0\LCAccesoDatos.AssemblyInfo.cs
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\bin\Debug\netstandard2.0\LCAccesoDatos.deps.json
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\bin\Debug\netstandard2.0\LCAccesoDatos.dll
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\obj\Debug\netstandard2.0\LCAccesoDatos.Properties.Resources.resources
-C:\Users\alfarouga\source\repos\sil-1\LCAccesoDatos\obj\Debug\netstandard2.0\LCAccesoDatos.csproj.GenerateResource.Cache
